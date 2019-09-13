@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.std.igek.dao.ThenewsDao">
+    
+  	<select id="shownews" resultType="Thenews">
+  		select * from thenews
+  		order by xDate desc
+  	</select>
+  	
+  	<select id="findnews" resultType="Thenews" parameterType="String">
+  		select * from thenews
+  		where newsname like concat ('%', #{newsname} ,'%')				<!-- sql语句拼接$符号里要使用value -->
+  	</select>
+  	<insert id="addnews">
+  		insert into thenews (newsname,newsclass,content,nDate,xDate)
+  		values (
+  			 #{newsname,jdbcType=VARCHAR},#{newsclass,jdbcType=VARCHAR},#{content,jdbcType=VARCHAR},
+  			now(),now()
+  		)
+  	</insert>
+  	<update id="xgnews">
+  		update thenews
+  		set newsname = #{newsname,jdbcType=VARCHAR},
+  			newsclass = #{newsclass,jdbcType=VARCHAR},
+  			content = #{content,jdbcType=VARCHAR},
+  			xDate = now()
+  		where nid = #{nid,jdbcType=INTEGER}
+  	</update>
+  	<delete id="deletenews">
+  		delete from thenews where
+  		nid = #{nid,jdbcType=INTEGER}
+  	</delete>
+  	<select id="findnewsByclass" resultType="Thenews" >
+  		select * from thenews
+  		where newsclass = #{newsclass,jdbcType = VARCHAR}
+  	</select>
+  	
+  	<select id="findnewsBynid" resultType="Thenews" >
+  		select * from thenews
+  		where nid = #{nid,jdbcType = INTEGER}
+  	</select>
+  </mapper>

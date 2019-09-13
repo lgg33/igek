@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.std.igek.dao.OrderDao">
+  	
+  		<!-- 添加订单 -->
+  		<insert id="doaddOrder"  parameterType="com.std.igek.entity.Order"  >
+  			insert into orders (onum,uid,address,money,pid,status,oname,pnum,tel,wl,price) values(#{onum},#{uid},#{address},#{ money},#{ pid },#{status },#{oname},#{ pnum},#{ tel },#{ wl },#{price})
+  		</insert>
+  	
+  		<select id="dofindOrder"   parameterType="int"  resultType="com.std.igek.entity.Order">
+  				select * from orders where uid=#{uid} and status=0	order by address
+  		</select>
+  		
+		<delete id="deleteOrder"  parameterType="int">
+				delete from  orders where  oid=#{oid}
+		</delete>
+  			
+  		  
+  </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

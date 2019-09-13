@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+.contain{
+	width:1000px;
+}
+
+
+#left ul{
+
+	margin-left:100px;
+}
+
+#left ul li{
+   list-style:none;
+   padding-top:30px;
+ }   
+ 
+ 
+.center{
+	position:absolute;
+	left:300px;
+	top:220px;
+}
+
+
+.center .line{
+	
+	border-bottom:1px solid #ccc;
+	width:500px;
+}
+.center .n img{
+	position:absolute;
+	left:400px;
+	top:220px;
+	width:300px;
+	height:200px;
+}

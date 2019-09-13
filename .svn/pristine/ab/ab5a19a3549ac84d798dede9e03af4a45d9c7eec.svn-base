@@ -1,0 +1,68 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+</head>
+<body>
+<script type="text/javascript">
+	$(function(){
+		$('#alert1').bind('click', function(){
+			$('#dia_form').form('submit', {
+			    url:"updadd",
+			    onSubmit: function(){
+					// do some check
+					// return false to prevent submit;
+			    },
+			    success:function(data){
+			    	if(data=="1"){
+	    	    		/* alert(data); */
+	    	    		//$.messager.alert('My Title','Here is a info message!','info');
+			    		/* $.messager.show({
+			    			title:'My Title',
+			    			msg:'修改成功',
+			    			timeout:1000,
+			    			showType:'slide'
+			    		}); */
+			    		//alert("修改成功");
+			    		location.reload();
+	    	    	}else{
+	    	    		alert("登录失败！");
+	    	    		location.href="login.jsp";
+	    	    	}
+			    }
+			});
+	    });
+		
+	})
+</script>
+<div>
+	系统设置>>修改信息
+	<hr>
+	<form action="" method="post" id="dia_form">
+		<input type="hidden" name="id">
+		<table>
+			<tr>
+				<td>姓名</td>
+				<td><input type="text" name="name"></td>
+			</tr>
+			<tr>
+				<td>价格</td>
+				<td><input type="text" name="price" value=""></td>
+			</tr>
+			<tr>
+				<td>描述</td>
+				<td><input type="text" name="describle" value=""></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right"><a id="alert1" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">修改</a>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+</body>
+</html>

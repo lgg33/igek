@@ -1,0 +1,51 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+  <%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path ;
+	%>
+<!DOCTYPE html>
+<html>
+	<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+			<link rel="stylesheet" type="text/css" href="css/Login.css"/>  
+			<title>igekBuy注册</title>
+	</head>
+	
+<body background="img/load.jpg">
+		
+		<div id="login">  
+		        <h1>Regist</h1>  
+		        
+		        <form   action="<%=basePath%>/regist.do" method="post"> 
+			           <label >用户名：</label><input id="uname"   name="uname"  required="required" placeholder="请输入用户名" ></input> 
+			             
+			           <label >密  码：</label><input id="psw"   name="psw"  type="password" required="required" placeholder="请输入密码" ></input>  
+		                    
+		               <label >性  别：</label>
+		                    <select name="sex">
+		                        <option value="男">男</option>
+		                        <option value="女">女</option>
+		                    </select>
+	                	<br>
+	                	<label >用户性质：</label>
+		                    <select name="utype">
+		                        <option value="0">用户</option>
+		                        <option value="1">管理员</option>
+		                    </select>
+	                	<br>
+	                   <label>年   龄：</label> <input id="uage"   name="uage"  required="required"  type="text" ></input>
+	                	
+	               	   <label >地   址：</label> <input id="uaddress"   name="uaddress"  required="required"  type="text" ></input> 
+	                
+	                  <label >电   话：</label> <input id="tel"   name="tel"  required="required"  type="text" ></input> 
+	                
+			         <button class="but" type="submit">确定</button>  
+		        </form>  
+			
+		</div>
+		
+</body>
+</html>

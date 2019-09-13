@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.std.igek.dao.UserDao">
+  
+  		  <!-- 登录查查询-->
+		  <select id="findUserbyName" resultType="com.std.igek.entity.User" parameterType="String">
+		       select * from user where uname=#{uname}
+		  </select>
+		     <!-- 
+		  <update id="updatapassword" parameterType="com.devil.entity.User" >
+		        update user set upassword=#{upassword} where uname=#{uname}       
+		  </update>
+		  
+		    <select id="findall" resultType="com.devil.entity.User">
+		     select * from user
+		  </select> 
+		  
+		  <select id="findbyuname" resultType="com.devil.entity.User" parameterType="String">
+		     select * from user where uname=#{uname }
+		  </select> 
+		  
+		  <select id="findbyuid" resultType="com.devil.entity.User" parameterType="int">
+		     select * from user where uid=#{idd}
+		  </select> 
+		  
+		  <select id="deletesup" parameterType="int">
+		     delete from user where uid=#{id}
+		  </select>
+		  
+		  <select id="doadduser" parameterType="com.devil.entity.User">
+		     insert into user (uid,uname,upassword,usex,uage,uphone,uaddress,utype ) 
+		             values(#{uid},#{uname},#{upassword},#{usex},#{uage},#{uphone},#{uaddress},#{utype} )
+		  </select>
+		  
+		  <select id="updateuser" parameterType="com.devil.entity.User">
+		     update user set uname=#{uname},usex=#{usex},uage=#{uage},uphone=#{uphone},
+		     uaddress=#{uaddress},utype=#{utype} where uid=#{uid}
+		  </select>
+		  
+		   -->
+  
+  </mapper>

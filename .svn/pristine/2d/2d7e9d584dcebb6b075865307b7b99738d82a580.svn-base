@@ -1,0 +1,28 @@
+package com.std.igek.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
+import com.std.igek.entity.Goods;
+
+
+public interface GoodsMapper {
+	@Select("select * from goods limit #{arg0},#{arg1}")
+	List<Goods> selByPage(int pageStart,int pageSize);
+	
+	@Select("select count(*) from goods")
+	int selCount();
+	
+	@Update("update goods set name=#{name},price=#{price},describle=#{describle} where id=#{id}")
+	int updAdd(Goods add);
+	
+	@Insert("insert into goods (name,price,describle,image) values(#{name},#{price},#{describle},#{image})")
+	int insGoods(Goods gs);
+
+	@Delete("delete from goods where id = #{id}")
+	int delGoods(Goods gs);
+}

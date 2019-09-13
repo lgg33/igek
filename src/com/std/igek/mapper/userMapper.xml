@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.std.igek.dao.UserDao">
+  
+  		  <!-- 登录查询-->
+		  <select id="findUserbyName" resultType="com.std.igek.entity.User" parameterType="String">
+		       select * from user where uname=#{uname}
+		  </select>
+		  <!-- 注册 -->
+		  <select id="doregister" parameterType="com.std.igek.entity.User" >
+		     insert into user (uname,psw,sex,uage,tel,uaddress,utype ) 
+		             values(#{uname},#{psw},#{sex},#{uage},#{tel},#{uaddress},#{utype} )
+		  </select>
+		  <!-- 用户修改信息 -->
+		  <update id="doupdateUser" parameterType="com.std.igek.entity.User"  >
+		        update user set  uname=#{uname}, psw=#{psw} , sex=#{sex} ,
+		        uage=#{ uage}, uaddress=#{ uaddress}, tel=#{ tel }   where uid=#{uid}       
+		  </update>
+		  <!-- 查询用户 -->
+		   <select id="dofindUserById" resultType="com.std.igek.entity.User" parameterType="int">
+		       select * from user where uid=#{uid}
+		  </select>
+  
+  </mapper>

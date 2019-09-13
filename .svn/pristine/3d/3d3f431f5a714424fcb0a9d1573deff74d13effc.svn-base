@@ -1,0 +1,40 @@
+package com.std.igek.service.impl;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.std.igek.dao.GoodsMapper;
+import com.std.igek.entity.EasyUIDatagrid;
+import com.std.igek.entity.Goods;
+import com.std.igek.service.AddSerivce;
+
+
+@Service
+public class AddServiceImpl implements AddSerivce{
+	@Resource
+	private GoodsMapper addmapper;
+	@Override
+	public EasyUIDatagrid show(int pageSize, int pageNumber) {
+		EasyUIDatagrid ea=new EasyUIDatagrid();
+		ea.setRows(addmapper.selByPage(pageSize*(pageNumber-1), pageSize));
+		ea.setTotal(addmapper.selCount());
+		return ea;
+	}
+	@Override
+	public int updAdd(Goods add) {
+		// TODO Auto-generated method stub
+		return addmapper.updAdd(add);
+	}
+	@Override
+	public int insGoods(Goods gs) {
+		// TODO Auto-generated method stub
+		return addmapper.insGoods(gs);
+	}
+	@Override
+	public int delGoods(Goods gs) {
+		// TODO Auto-generated method stub
+		return addmapper.delGoods(gs);
+	}
+	
+}

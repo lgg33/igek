@@ -1,0 +1,11 @@
+package com.std.igek.service;
+
+import com.std.igek.entity.EasyUIDatagrid;
+import com.std.igek.entity.Goods;
+
+public interface AddSerivce {
+	public EasyUIDatagrid show(int pageSize,int pageNumber);
+	public int updAdd(Goods add);
+	public int insGoods(Goods gs);
+	public int delGoods(Goods gs);
+}

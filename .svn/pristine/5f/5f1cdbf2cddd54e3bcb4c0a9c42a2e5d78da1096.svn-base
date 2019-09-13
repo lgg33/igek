@@ -1,0 +1,57 @@
+package com.std.igek.controller;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.std.igek.entity.User;
+import com.std.igek.service.UserService;
+
+@Controller
+public class UserController {
+	
+	//连接服务层
+	@Resource
+	private UserService service;
+		
+	//登录
+	@RequestMapping("load.do")
+	public String dologinUser(HttpServletRequest request,String uname) {	
+		String password = request.getParameter("psw");
+		System.out.println(password);
+		User user = service.findUserByName(uname);
+		
+		
+		 if(password.equals(user.getPsw())) {
+			 request.getSession().setAttribute("user", user);
+              //request.setAttribute("user", user);
+	          return "index";  
+         }else {
+        	 String  tip = "密码错误，请重新输入！";
+        	 request.setAttribute(tip, tip);
+	          return "login";
+        }
+	}
+	//注册
+	@RequestMapping("regist.do")
+	public String doregist(HttpServletRequest request,User user) {
+		service.doregister(user);
+		return  "load";
+	}
+	//更新
+	@RequestMapping("updateUser.do")
+	public String  doupdateUser(HttpServletRequest request,User user) {
+		System.out.println(user.getUid());
+		service.doupdateUser(user);
+		return "index";
+				
+	}
+		
+		
+		
+	
+	
+	
+}

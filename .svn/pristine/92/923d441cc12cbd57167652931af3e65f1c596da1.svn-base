@@ -1,0 +1,9 @@
+package com.std.igek.service;
+
+import com.std.igek.entity.Admin;
+
+public interface AdminService {
+	public Admin select(Admin user);
+
+	public int updatePw(Admin admin);
+}

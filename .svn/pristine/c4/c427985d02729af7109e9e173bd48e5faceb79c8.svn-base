@@ -1,0 +1,112 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+</head>
+<body>
+<script type="text/javascript">
+	
+	$(function(){
+		$('#add_datagrid').datagrid({
+		    url:'showadd',
+		    columns:[[
+				{field:'id',title:'编号',width:100,hidden:true},
+				{field:'image',title:'图片',formatter:function(value, row, index){
+							//alert(value);
+							if(value != undefined){
+								//alert(value);
+								return "<img style='width:35px;height:35px;' border='1' src='images/"+value+"' />";
+							}
+					}
+				},
+				{field:'name',title:'名称',width:100},
+				{field:'price',title:'价格',width:100},
+				{field:'describle',title:'描述',width:100,align:'right'},
+				/* {field:'sort1',title:'操作',width:100,
+					formatter: function(value,row,index){
+						return "aaa";
+					}
+				}, */
+		    ]],
+		    pagination:true,
+		    pageList:[2,4,6,8,10],
+		    striped:true,
+		    fitColumns:true,
+		    //singleSelect:true,
+		    rownumbers:true,
+		    toolbar: [{
+				iconCls: 'icon-remove',
+				text:"删除",
+				handler: function(){
+					var rows= $('#add_datagrid').datagrid('getSelections');
+					for(var i=0;i<rows.length;i++){
+						var row=rows[i];
+						//alert(row.id);
+						$.ajax({
+							        type:"GET",
+							        url:"delgoods?id="+row.id,
+							        //dataType:"json", 预期服务器返回数据的类型
+							        success:function(data){
+							           if(data==1){
+							              window.location.href='main.jsp';
+							           }else{
+							               alert("error");
+							           }
+							        },
+							        error:function(jqXHR){
+							           aler("发生错误：");
+							        }
+								});
+					}
+				}
+			},'-',{
+				iconCls: 'icon-edit',
+				text:"修改",
+				handler: function(){
+					if($("#add_datagrid").datagrid("getSelections").length==1){
+						$('#add_dialog').dialog({
+						    title: '修改信息',
+						    width: 400,
+						    height: 200,
+						    closed: false,
+						    cache: false,
+						    href: 'dialog_add.jsp',
+						    modal: true,
+						    onLoad:function(){
+						    	$("#dia_form :text:eq(0)").val($('#add_datagrid').datagrid("getSelected").name);
+						    	$("#dia_form :text:eq(1)").val($('#add_datagrid').datagrid("getSelected").price);
+						    	$("#dia_form :text:eq(2)").val($('#add_datagrid').datagrid("getSelected").describle);
+						    	$("#dia_form :hidden:eq(0)").val($('#add_datagrid').datagrid("getSelected").id);
+						    	
+						    }
+						});
+					}else{
+						$.messager.alert("系统信息","请选择<b style='color:red'>一行</b>")
+					}
+					
+				}
+			}/* ,'-',{
+				iconCls: 'icon-search',
+				text:"查看",
+				handler: function(){alert('help')}
+			
+			} */]
+		});
+	})
+	
+</script>
+<div id="tb" style="padding:3px">
+	<span>商品 ID:</span>
+	<input id="gid" name="goodsid" style="line-height:26px;border:1px solid #ccc">
+	<span>商品名称:</span>
+	<input id="gid2" name="goodsname" style="line-height:26px;border:1px solid #ccc">
+	<a href="#" class="easyui-linkbutton" plain="true" onclick="doSearch()">查看</a>
+</div>
+<table id="add_datagrid"></table>
+<div id="add_dialog"></div>
+</body>
+</html>

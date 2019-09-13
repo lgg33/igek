@@ -1,0 +1,15 @@
+package com.std.igek.service;
+
+import java.util.List;
+
+import com.std.igek.entity.Goods;
+
+public interface GoodService {
+
+	public List<Goods> selAll();
+
+	public Goods selById(Integer gid);
+
+	public List<Goods> selShuMa();
+
+}

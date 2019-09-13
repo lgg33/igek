@@ -1,0 +1,16 @@
+package com.std.igek.dao;
+
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
+import com.std.igek.entity.Admin;
+
+
+
+public interface AdminMapper {
+	@Select("select * from admin where name=#{name} and password=#{password}")
+	public Admin select(Admin user);
+
+	@Update("update admin set password=#{password} where id=#{id}")
+	public int updatePw(Admin admin);
+}

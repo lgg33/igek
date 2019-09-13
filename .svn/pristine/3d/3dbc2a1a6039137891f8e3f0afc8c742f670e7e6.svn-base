@@ -1,0 +1,16 @@
+package com.std.igek.dao;
+
+import org.springframework.stereotype.Repository;
+
+import com.std.igek.entity.User;
+
+
+@Repository("userDao")
+public interface UserDao {
+
+	User findUserbyName(String username);
+	
+	
+	
+	
+}

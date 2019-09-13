@@ -1,0 +1,83 @@
+package com.std.igek.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.std.igek.entity.Category;
+import com.std.igek.entity.Country;
+import com.std.igek.entity.Goods;
+import com.std.igek.service.GoodService;
+import com.std.igek.service.GoodsSerivce;
+import com.sun.org.apache.regexp.internal.recompile;
+
+@Controller
+public class GoodController {
+	@Resource
+	private GoodService goodservice;
+	
+	@Resource
+	private GoodsSerivce goodsSerivce;
+	
+	//查询个护类
+	@RequestMapping("selAll")
+	public String selAll(HttpServletRequest req){
+		List<Goods> list = goodservice.selAll();
+		List<Category> clist=goodsSerivce.selCategory();
+		List<Goods> dzlist=goodservice.selShuMa();
+		List<Country> colist=goodservice.selAllCoun();
+		req.getSession().setAttribute("goods", list);
+		req.getSession().setAttribute("categorys", clist);
+		req.getSession().setAttribute("dzlist", dzlist);
+		req.getSession().setAttribute("colist", colist);
+		//System.out.println(colist);
+		//System.out.println(dzlist);
+		//System.out.println(clist);
+		//System.out.println(list);
+		return "index2.jsp";
+		
+	}
+	
+	//商品详情
+	@RequestMapping("goodsdetail")
+	public String toGoodsDetail(Integer gid,HttpServletRequest req) {
+		//System.out.println(gid);
+		Goods gs=goodservice.selById(gid);
+		req.getSession().setAttribute("good", gs);
+		//System.out.println(gs);
+		return "goodsdetail.jsp";
+		
+	}
+	
+	
+	@RequestMapping("fenlei")
+	public String toFenLei(HttpServletRequest req,Integer categoryid) {
+		Category cg=goodservice.selCgById(categoryid);
+		List<Goods> gslist=goodservice.selGoodsByCg(categoryid);
+		req.getSession().setAttribute("feilei", cg);
+		req.getSession().setAttribute("gslist", gslist);
+		return "fenlei.jsp";
+	}
+	
+	@RequestMapping("guojia")
+	public String toGuoJia(HttpServletRequest req,Integer countryid) {
+		if(countryid!=null) {
+			List<Goods> gslist=goodservice.selGoodsByCountry(countryid);
+			Country country=goodservice.selCountryByCg(countryid);
+			req.getSession().setAttribute("countrygs", gslist);
+			req.setAttribute("country", country);
+			return "fenleiguojia.jsp";
+		}else {
+			List<Goods> gslist=goodservice.selAllGoods();
+			req.getSession().setAttribute("countrygs", gslist);
+			return "fenleiguojia.jsp";
+		}
+	}
+	
+	
+
+}

@@ -1,0 +1,37 @@
+package com.std.igek.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.std.igek.dao.GoodDao;
+import com.std.igek.entity.Goods;
+import com.std.igek.service.GoodService;
+
+@Service
+public class GoodServiceImpl implements GoodService{
+	
+	@Resource
+	private GoodDao gooddao;
+	
+	@Override
+	public List<Goods> selAll() {
+		// TODO Auto-generated method stub
+		return gooddao.selAll();
+	}
+
+	@Override
+	public Goods selById(Integer gid) {
+		// TODO Auto-generated method stub
+		return gooddao.selById(gid);
+	}
+
+	@Override
+	public List<Goods> selShuMa() {
+		// TODO Auto-generated method stub
+		return gooddao.selShuMa();
+	}
+
+}

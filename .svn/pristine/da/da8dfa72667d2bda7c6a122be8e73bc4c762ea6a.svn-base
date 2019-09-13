@@ -1,0 +1,100 @@
+package com.std.igek.entity;
+
+import java.sql.Date;
+
+public class Goods {
+	private int id;
+	private int catelog_id;
+	private int uesr_id;
+	private String name;
+	private float price;
+	private float real_price;
+	private Date start_time;
+	private Date polish_time;
+	private Date end_time;
+	private String describle;
+	private int status;
+	private String image;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getCatelog_id() {
+		return catelog_id;
+	}
+	public void setCatelog_id(int catelog_id) {
+		this.catelog_id = catelog_id;
+	}
+	public int getUesr_id() {
+		return uesr_id;
+	}
+	public void setUesr_id(int uesr_id) {
+		this.uesr_id = uesr_id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public float getPrice() {
+		return price;
+	}
+	public void setPrice(float price) {
+		this.price = price;
+	}
+	public float getReal_price() {
+		return real_price;
+	}
+	public void setReal_price(float real_price) {
+		this.real_price = real_price;
+	}
+	public Date getStart_time() {
+		return start_time;
+	}
+	public void setStart_time(Date start_time) {
+		this.start_time = start_time;
+	}
+	public Date getPolish_time() {
+		return polish_time;
+	}
+	public void setPolish_time(Date polish_time) {
+		this.polish_time = polish_time;
+	}
+	public Date getEnd_time() {
+		return end_time;
+	}
+	public void setEnd_time(Date end_time) {
+		this.end_time = end_time;
+	}
+	public String getDescrible() {
+		return describle;
+	}
+	public void setDescrible(String describle) {
+		this.describle = describle;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	@Override
+	public String toString() {
+		return "Goods [id=" + id + ", catelog_id=" + catelog_id + ", uesr_id=" + uesr_id + ", name=" + name + ", price="
+				+ price + ", real_price=" + real_price + ", start_time=" + start_time + ", polish_time=" + polish_time
+				+ ", end_time=" + end_time + ", describle=" + describle + ", status=" + status + ", image=" + image
+				+ "]";
+	}
+	
+	
+	
+}

@@ -1,0 +1,51 @@
+package com.std.igek.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.std.igek.entity.Category;
+import com.std.igek.entity.Goods;
+import com.std.igek.service.GoodService;
+import com.std.igek.service.GoodsSerivce;
+
+@Controller
+public class GoodController {
+	@Resource
+	private GoodService goodservice;
+	
+	@Resource
+	private GoodsSerivce goodsSerivce;
+	
+	//查询个护类
+	@RequestMapping("selAll")
+	public String selAll(HttpServletRequest req){
+		List<Goods> list = goodservice.selAll();
+		List<Category> clist=goodsSerivce.selCategory();
+		List<Goods> dzlist=goodservice.selShuMa();
+		req.getSession().setAttribute("goods", list);
+		req.getSession().setAttribute("categorys", clist);
+		req.getSession().setAttribute("dzlist", dzlist);
+		System.out.println(dzlist);
+		//System.out.println(clist);
+		//System.out.println(list);
+		return "index.jsp";
+		
+	}
+	
+	public String toGoodsDetail(Integer gid,HttpServletRequest req) {
+		
+		Goods gs=goodservice.selById(gid);
+		req.getSession().setAttribute("good", gs);
+		
+		return "goodsdetail.jsp";
+		
+	}
+	
+	
+
+}
